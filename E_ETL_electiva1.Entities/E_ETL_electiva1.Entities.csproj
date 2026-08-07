@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\api\" />
+    <ProjectReference Include="..\E_ETL_electiva1.api\E_ETL_electiva1.api.csproj" />
   </ItemGroup>
 
 </Project>

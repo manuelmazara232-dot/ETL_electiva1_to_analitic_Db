@@ -1,16 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using E_ETL_electiva1.Entities.interfaces;
 using E_ETL_electiva1.api.context;
 
 namespace E_ETL_electiva1.Data.Repositories
 
-{
-    internal class TransDbRepo<T> : IDbReaderRepository<T> where T: class
+{ //Solo subira las dimensiones relevantes para reseñas publicadas en su sitio web.
+    public class TransDbRepo<T> : IDbReaderRepository<T> where T: class
     {
-        // Reemplaza con el nombre exacto de tu DbContext generado
         protected readonly opiniones_de_clientesDBContext _context;
         protected readonly DbSet<T> _dbSet;
 

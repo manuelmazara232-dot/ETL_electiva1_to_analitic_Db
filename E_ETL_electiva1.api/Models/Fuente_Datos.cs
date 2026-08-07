@@ -11,7 +11,7 @@ public partial class Fuente_Datos
 
     public int IdTipoFuente { get; set; }
 
-    public DateOnly FechaCarga { get; set; }
+    public DateTime FechaCarga { get; set; }
 
     public virtual Tipos_Fuente IdTipoFuenteNavigation { get; set; } = null!;
 }

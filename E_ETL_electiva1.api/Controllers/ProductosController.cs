@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,47 +12,47 @@ namespace E_ETL_electiva1.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class Fuente_DatosController : ControllerBase
+    public class ProductosController : ControllerBase
     {
         private readonly opiniones_de_clientesDBContext _context;
 
-        public Fuente_DatosController(opiniones_de_clientesDBContext context)
+        public ProductosController(opiniones_de_clientesDBContext context)
         {
             _context = context;
         }
 
-        // GET: api/Fuente_Datos
+        // GET: api/Productos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Fuente_Datos>>> GetFuente_Datos()
+        public async Task<ActionResult<IEnumerable<Productos>>> GetProductos()
         {
-            return await _context.Fuente_Datos.ToListAsync();
+            return await _context.Productos.ToListAsync();
         }
 
-        // GET: api/Fuente_Datos/5
+        // GET: api/Productos/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Fuente_Datos>> GetFuente_Datos(string id)
+        public async Task<ActionResult<Productos>> GetProductos(string id)
         {
-            var fuente_Datos = await _context.Fuente_Datos.FindAsync(id);
+            var productos = await _context.Productos.FindAsync(id);
 
-            if (fuente_Datos == null)
+            if (productos == null)
             {
                 return NotFound();
             }
 
-            return fuente_Datos;
+            return productos;
         }
 
-        // PUT: api/Fuente_Datos/5
+        // PUT: api/Productos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFuente_Datos(string id, Fuente_Datos fuente_Datos)
+        public async Task<IActionResult> PutProductos(string id, Productos productos)
         {
-            if (id != fuente_Datos.IdFuente)
+            if (id != productos.IdProducto)
             {
                 return BadRequest();
             }
 
-            _context.Entry(fuente_Datos).State = EntityState.Modified;
+            _context.Entry(productos).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +60,7 @@ namespace E_ETL_electiva1.api.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!Fuente_DatosExists(id))
+                if (!ProductosExists(id))
                 {
                     return NotFound();
                 }
@@ -74,19 +73,19 @@ namespace E_ETL_electiva1.api.Controllers
             return NoContent();
         }
 
-        // POST: api/Fuente_Datos
+        // POST: api/Productos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Fuente_Datos>> PostFuente_Datos(Fuente_Datos fuente_Datos)
+        public async Task<ActionResult<Productos>> PostProductos(Productos productos)
         {
-            _context.Fuente_Datos.Add(fuente_Datos);
+            _context.Productos.Add(productos);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (Fuente_DatosExists(fuente_Datos.IdFuente))
+                if (ProductosExists(productos.IdProducto))
                 {
                     return Conflict();
                 }
@@ -96,28 +95,28 @@ namespace E_ETL_electiva1.api.Controllers
                 }
             }
 
-            return CreatedAtAction("GetFuente_Datos", new { id = fuente_Datos.IdFuente }, fuente_Datos);
+            return CreatedAtAction("GetProductos", new { id = productos.IdProducto }, productos);
         }
 
-        // DELETE: api/Fuente_Datos/5
+        // DELETE: api/Productos/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteFuente_Datos(string id)
+        public async Task<IActionResult> DeleteProductos(string id)
         {
-            var fuente_Datos = await _context.Fuente_Datos.FindAsync(id);
-            if (fuente_Datos == null)
+            var productos = await _context.Productos.FindAsync(id);
+            if (productos == null)
             {
                 return NotFound();
             }
 
-            _context.Fuente_Datos.Remove(fuente_Datos);
+            _context.Productos.Remove(productos);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool Fuente_DatosExists(string id)
+        private bool ProductosExists(string id)
         {
-            return _context.Fuente_Datos.Any(e => e.IdFuente == id);
+            return _context.Productos.Any(e => e.IdProducto == id);
         }
     }
 }
